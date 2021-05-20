@@ -1,4 +1,4 @@
-![VoxelSrv](https://imgur.com/1XLqSSQ)
+![VoxelSrv](https://i.imgur.com/R3vtJo4.png)
 # VoxelSrv
 VoxelSrv is a voxel game inspired by Minecraft, where you can build, mine and ~~craft~~ (not implemented yet).
 I'm creating it to learn Javascript and just have some fun.
