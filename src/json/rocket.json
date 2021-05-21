@@ -1,0 +1,7 @@
+{
+	"name":"rocket",
+	"sound":"rocket_launch.ogg",
+	"flyparticle":"textures/particle/big_smoke.png",
+	"mob":true,
+	"particle":"block/dirt"
+}

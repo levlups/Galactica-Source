@@ -1,0 +1,27 @@
+{
+	"name":"gold_helmet",
+	"north":{
+	"positionOpen":[0.5,0.5,1],
+	"positionClose":[0.5,0,0.5],
+	"rotation":[0,0,0],
+	"open":[0,3.14,0]
+	},
+	"south":{
+	"positionOpen":[0.5,0.5,0],
+	"positionClose":[0.5,0,0.5],
+	"rotation":[0,3.14,0],
+	"open":[0,3.14,0]
+	},
+	"east":{
+	"positionOpen":[1,0.5,0.5],
+	"positionClose":[0.5,0,0.5],
+	"rotation":[0,1.57,0],
+	"open":[0,-1.57,0]
+	},
+	"west":{
+	"positionOpen":[0,0.5,0.5],
+	"positionClose":[0.5,0,0.5],
+	"rotation":[0,-1.57,0],
+	"open":[0,1.57,0]
+	}
+}

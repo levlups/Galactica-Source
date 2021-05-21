@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Babylon.js sample code</title>
+
+        <!-- Babylon.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+        <script src="https://preview.babylonjs.com/ammo.js"></script>
+        <script src="https://preview.babylonjs.com/cannon.js"></script>
+        <script src="https://preview.babylonjs.com/Oimo.js"></script>
+        <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+        <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+        <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+        <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+        <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+        <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+        <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #renderCanvas {
+			display: block;
+            margin-left: auto;
+               margin-right: auto;
+  
+                width: 50%;
+                height: 50%;
+                touch-action: none;
+            }
+			#button {
+			display: block;
+            margin-left: auto;
+               margin-right: auto;
+  
+                width: 50%;
+                height: 50%;
+                touch-action: none;
+            }
+        </style>
+    </head>
+<body>
+<div>
+    <canvas id="renderCanvas" ></canvas>
+	<button id="button" onmousedown="rotate()">leave</button>
+	</div>
+    <script>
+	var mainplayer=null;
+        var canvas = document.getElementById("renderCanvas");
+
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
+        var createScene = function () {
+            var scene = new BABYLON.Scene(engine);
+        
+            //Adding a light
+            var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
+        
+            //Adding an Arc Rotate Camera
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 5, BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, false);
+			camera.clearColor=[1,1,1];
+			
+			
+			var bustex = new BABYLON.Texture("mod/v1/entity.boy.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
+var busmat = new BABYLON.StandardMaterial("face0", scene);
+busmat.diffuseTexture=bustex;
+busmat.backFaceCulling = false;
+busmat.specularColor = BABYLON.Color3.Black()
+busmat.emissiveColor = BABYLON.Color3.White()
+bustex.hasAlpha=true;
+
+
+  BABYLON.SceneLoader.ImportMesh(null,"models/", "alien.babylon", scene, function (meshes) {
+            mainplayer= new BABYLON.Mesh("dummy", scene);
+			for (var i=0;i<meshes.length;i++){
+	
+	
+	 meshes[i].material=busmat;
+	  meshes[i].parent=mainplayer;
+	  
+	  //noa.rendering.addMeshToScene(mainplayer, false, [0,0,0])
+	  //mainplayer._children[0].isPickable=false
+	  
+	 
+			//	 noa.rendering.addMeshToScene(mainplayer._children[0], false, [0,0,0])
+	
+	 
+	 
+ }
+ mainplayer.rotation.y=Math.PI/2
+				camera.target = meshes[0];
+			
+	
+	})
+	
+	
+			
+        
+            /*// The first parameter can be used to specify which mesh to import. Here we import all meshes
+            BABYLON.SceneLoader.ImportMesh("", "scenes/", "skull.babylon", scene, function (newMeshes) {
+                // Set the target of the camera to the first imported mesh
+                camera.target = newMeshes[0];
+            });*/
+        
+            // Move the light with the camera
+            scene.registerBeforeRender(function () {
+                light.position = camera.position;
+            });
+        
+            return scene;
+        }
+                var engine;
+                var scene;
+                initFunction = async function() {               
+                    var asyncEngineCreation = async function() {
+                        try {
+                        return createDefaultEngine();
+                        } catch(e) {
+                        console.log("the available createEngine function failed. Creating the default engine instead");
+                        return createDefaultEngine();
+                        }
+                    }
+
+                    engine = await asyncEngineCreation();
+        if (!engine) throw 'engine should not be null.';
+        scene = createScene();};
+        initFunction().then(() => {sceneToRender = scene        
+            engine.runRenderLoop(function () {
+                if (sceneToRender && sceneToRender.activeCamera) {
+                    sceneToRender.render();
+                }
+            });
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+		
+		window.addEventListener('mousemove',rotate );
+
+	function rotate(e) {
+	if(mainplayer==null){
+		return;
+	}
+	
+	if(document.pointerLockElement!==null){
+		//mainplayer._children[0].rotation.x=-Math.PI/2
+		//mainplayer._children[0].rotation.y=0
+		return;
+	}
+
+	
+	var c=window.innerWidth/2
+	var d=window.innerHeight/2
+	   var bottom, left, right, tap, wych_x, wych_y, xoff, yoff;
+	xoff=e.screenX - window.innerWidth / 2 + c//112;
+	yoff=e.screenY - window.innerHeight / 2 + d//170;
+	
+	 left = xoff / (window.innerWidth / 2 +c) //112);
+            right = xoff / (window.innerWidth / 2 -c)// 112);
+            tap = yoff / (window.innerHeight / 2 - d)//170);
+            bottom = yoff / (window.innerHeight / 2 +d)// 170);
+            /*wych_x = Math.PI / 3;
+            wych_y = Math.PI / 4;*/
+			
+			   wych_x = Math.PI/0.9 ;
+            wych_y = Math.PI/4
+			
+			
+			if (xoff > 0) {
+			mainplayer.rotation.y=-(e.screenX-(window.innerWidth / 2))/900 +Math.PI/2
+			}else{
+				
+					mainplayer.rotation.y=0
+			}
+			
+			
+		
+           if (yoff > 0) {
+               mainplayer._children[0].rotation.x =
+                    (wych_y * bottom)-Math.PI/2;
+					
+					mainplayer._children[0].rotation.y =
+                    -(wych_x * left)+Math.PI/2;
+            } else {
+                mainplayer._children[0].rotation.x =
+                    (wych_y * tap)-Math.PI/2;
+					
+					mainplayer._children[0].rotation.y =
+                    -(wych_x *right)+Math.PI/2;
+            }
+			
+
+}
+    </script>
+</body>
+</html>

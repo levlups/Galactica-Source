@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facingL": { "model": "block/wall_torch" },
+        "facingS": { "model": "block/wall_torch", "y": 90 },
+        "facingR": { "model": "block/wall_torch", "y": 180 },
+        "facingN": { "model": "block/wall_torch", "y": 270 }
+    }
+}

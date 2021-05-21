@@ -1,0 +1,30 @@
+{
+	"name":"rail",
+	"north":{
+	"Open":[0.5,0.5,1],
+	"Close":[0.5,0,0.5],
+	"Closerotation":[1.57,3.14,0],
+	"Openrotation":[0,3.14,0]
+	},
+	"south":{
+	"Open":[0.5,0.5,0],
+	"Close":[0.5,0,0.5],
+	"Closerotation":[1.57,3.14,0],
+	"Openrotation":[0,3.14,0]
+	},
+	"east":{
+	"Open":[1,0.5,0.5],
+	"Close":[0.5,0,0.5],
+	"Closerotation":[1.57,-1.57,0],
+	"Openrotation":[0,-1.57,0]
+	},
+	"west":{
+	"Open":[0,0.5,0.5],
+	"Close":[0.5,0,0.5],
+	"Closerotation":[1.57,1.57,0],
+	"Openrotation":[0,1.57,0]
+	},
+	"held":{"hand":{"x":-0.3,"y":-2.1,"z":0.2,"rotation":[1.57,0,0],"scale":[0.6,0.6,0.6]},
+	"third":{"x":0.6,"y":-0.2,"z":1,"rotation":[0,1.3,0],"scale":[1.5,1.5,1.5]}	
+	}
+}

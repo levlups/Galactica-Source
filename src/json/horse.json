@@ -1,0 +1,9 @@
+{
+	"name":"horse",
+	"held":{"hand":{"x":-0.3,"y":-2.1,"z":0.2,"rotation":[1.57,0,0],"scale":[0.6,0.6,0.6]},
+	"third":{"x":0.6,"y":-0.2,"z":1,"rotation":[0,1.3,0],"scale":[1.5,1.5,1.5]}	
+	},
+	"skin":{"0":"horse/horse","1":"horse/horse","2":"horse/ruby","3":"horse/ruby","4":"horse/silver","5":"horse/silver"},
+	"mob":true,
+	"particle":"block/sand"
+}

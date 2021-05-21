@@ -1,0 +1,28 @@
+{
+	"name":"stairs",
+	"north":{
+	"Open":[0.5,0,0],
+	"Close":[0.5,0,0],
+	"Closerotation":[-1.57,3.14,0],
+	"Openrotation":[-1.57,3.14,0]
+	},
+	"south":{
+	"Open":[0.5,0,1],
+	"Close":[0.5,0,1],
+	"Closerotation":[-1.57,0,0],
+	"Openrotation":[-1.57,0,0]
+	},
+	"east":{
+	"Open":[0,0,0.5],
+	"Close":[0,0,0.5],
+	"Closerotation":[-1.57,-1.57,0],
+	"Openrotation":[-1.57,-1.57,0]
+	},
+	"west":{
+	"Open":[1,0,0.5],
+	"Close":[1,0,0.5],
+	"Closerotation":[-1.57,1.57,0],
+	"Openrotation":[-1.57,1.57,0]
+	},
+	"texture":"textures/block/oak_planks.png"
+}

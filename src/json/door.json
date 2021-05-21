@@ -1,0 +1,27 @@
+{
+	"name":"door",
+	"north":{
+	"Open":[1,0,0.5],
+	"Close":[0.5,0,0],
+	"Closerotation":[0,3.14,0],
+	"Openrotation":[0,1.57,0]
+	},
+	"south":{
+	"Open":[1,0,0.5],
+	"Close":[0.5,0,1],
+	"Closerotation":[0,0,0],
+	"Openrotation":[0,1.57,0]
+	},
+	"east":{
+	"Open":[0.5,0,1],
+	"Close":[0,0,0.5],
+	"Closerotation":[0,-1.57,0],
+	"Openrotation":[0,3.14,0]
+	},
+	"west":{
+	"Open":[0.5,0,1],
+	"Close":[1,0,0.5],
+	"Closerotation":[0,1.57,0],
+	"Openrotation":[0,3.14,0]
+	}
+}

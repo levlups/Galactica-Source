@@ -1,0 +1,255 @@
+<DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+#release{
+  background-color: #4CAF50;
+}
+
+.dropdown {
+  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align:center;
+}
+.image{
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.dropdown-content {
+  display: none;
+  position: block;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align:center;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.writing{
+  display: block;
+  
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="writing">
+
+<img id="image" class="image" src="image.jpg">
+<button id="tooth" onclick="go()")'>skin</button>
+<button id="release" onclick="yo()">pick a release</button>
+<h2>Hoverable Dropdown</h2>
+<p>Move the mouse over the button to open the dropdown menu.</p>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content" id="dropdown-content">
+   
+  </div>
+</div>
+<script>
+
+too()
+function too(){
+
+ if(window.localStorage.getItem('username')== undefined || window.localStorage.getItem('password')== undefined ){
+	  var x = document.createElement("FORM");
+  x.setAttribute("id", "myForm");
+  
+  
+  document.body.appendChild(x);
+
+  var y = document.createElement("INPUT");
+     y.setAttribute("id", "username");
+  y.setAttribute("type", "text");
+  y.setAttribute("value", "Username");
+  
+   var z = document.createElement("INPUT");
+   z.setAttribute("id", "password");
+  z.setAttribute("type", "password");
+  z.setAttribute("value", "password");
+  
+   var s = document.createElement("BUTTON");
+                s.setAttribute("type", "button");
+                s.setAttribute("value", "Submit");
+				s.innerHTML="Submit";
+			s.addEventListener("click", checkcreds);
+  document.getElementById("myForm").appendChild(y);
+  document.getElementById("myForm").appendChild(z);
+   document.getElementById("myForm").appendChild(s);
+	 }
+}
+	function checkcreds(){
+var use= document.getElementById("username").value;
+var pass= document.getElementById("password").value;
+
+var xhr = new XMLHttpRequest();
+				const url='https://forgetoken.club/remote.php';
+				
+
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send("usernamePost="+use+"&passwordPost="+pass);
+           
+
+				xhr.onreadystatechange = (e) => {
+				
+				 var c=xhr.responseText
+				 alert(use)
+				 alert(pass)
+				  alert(c)
+				 if(c == "success" ){
+					 
+					 window.localStorage.setItem('allowed','pass');
+					// alert('success')
+					return;
+				 }else if(c == "loguin failed" ){
+					 discreason=c
+					 stopgame();
+					  window.localStorage.setItem('allowed','fail');
+				 }else if(c == "user not existant register please" ){
+					 discreason=c
+					 stopgame();
+					   window.localStorage.setItem('allowed','fail');
+				 }
+				}
+    	
+    
+    return true;
+}	
+
+
+function go(){
+
+window.location.href='../skinviewer/index.html'
+}
+var http = require('http');
+var fs = require('fs');
+var url="https://i.imgur.com/lcaeYM5b.jpg"
+var dest="./lol999999999999.png";
+var download = function(url, dest, cb) {
+  var file = fs.createWriteStream(dest);
+  var request = http.get(url, function(response) {
+    response.pipe(file);
+    file.on('finish', function() {
+      file.close(cb);  // close() is async, call cb after close completes.
+    });
+  }).on('error', function(err) { // Handle errors
+    fs.unlink(dest); // Delete the file async. (But we don't check the result)
+    if (cb) cb(err.message);
+  });
+};
+
+var version=localStorage.getItem('map')
+document.getElementById("release").innerHTML=version
+var trick=false
+setInterval(function(){
+trick=!trick
+if(trick){
+document.getElementById("image").src="image2.jpg";
+}
+if(!trick){
+document.getElementById("image").src="image.jpg";
+}
+ }, 5000);
+  
+//var fs = require('fs');
+
+function yo(){
+var p=document.getElementById("release").innerHTML
+fs.writeFile('./gameversion.txt', p, function (err) {
+  if (err) return console.log(err);
+ 
+
+});
+
+window.location.href='../index.html'
+
+}
+function lol(name){
+var c=name
+document.getElementById("release").innerHTML=c
+version =localStorage.setItem('map',c)
+}
+
+		  
+		  getDirectories('./docs/versions')
+		  function getDirectories(path) {
+  return fs.readdirSync(path).filter(function (file) {
+  
+     var select = document.getElementById("dropdown-content");
+     
+  var option = document.createElement("a");
+  option.text = file;
+  option.onclick =  function(){lol(file)};
+  select.appendChild(option);
+    
+  });
+  
+  
+  }
+  
+  postgame()
+  function postgame(){
+    
+    
+    	var xhr = new XMLHttpRequest();
+				const url='https://forgetoken.club/getversion.php';
+				//var values=window.location;
+				//var patata='patata';
+
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send("usernamePost=");
+           
+
+				xhr.onreadystatechange = (e) => {
+				
+				 var c=xhr.responseText
+				  
+				  document.getElementById("release").innerHTML=c
+				 
+				}
+    	
+    
+    return true;
+    
+}
+</script>
+</body>
+</html>
