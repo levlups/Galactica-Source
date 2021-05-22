@@ -4,7 +4,7 @@ VoxelSrv is a voxel game inspired by Minecraft, where you can build, mine and ~~
 I'm creating it to learn Javascript and just have some fun.
 It's still unfinished, maybe someday it will be playable. For now it's multiplayer-only, but I plan to add Singleplayer too.
 
-![sweet](https://www.paypal.com/donate?hosted_button_id=3BHCY5NSQLNMW)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate?hosted_button_id=3BHCY5NSQLNMW)
 
 - [Discord](https://discord.gg/K9PdsDh)
 - [Changelog](https://github.com/Patbox/voxelsrv/blob/master/CHANGELOG.md)
