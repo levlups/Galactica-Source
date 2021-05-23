@@ -1,4 +1,3 @@
-- Added options
 
 
 # 0.0.2
