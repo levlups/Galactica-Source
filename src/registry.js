@@ -11,6 +11,7 @@ import { waterside} from './blockdef/waterside'
 import { waterside1} from './blockdef/waterside1'
 import { waterside2} from './blockdef/waterside2'
 import { stairs} from './blockdef/stairs'
+import { pilon} from './blockdef/pilon'
 import { wire} from './blockdef/wire'
 import { slab} from './blockdef/slab'
 import { ground} from './blockdef/ground'
@@ -464,6 +465,9 @@ var color=[1,1,1]
 		
 		else if(name=="sign"){
 			makesign(noa,options,id,name,jsoninfo[name])
+		}
+		else if(name=="pilon"){
+			pilon(noa,options,id,name,jsoninfo[name])
 		}
 		
 		
