@@ -1,6 +1,6 @@
 module.exports.addhat=function(name ,mainp){
 	
-name='coolhat'
+name='glasses'
 	if(name=='none'){
 		if(hat!==null){
 			hat.dispose()
