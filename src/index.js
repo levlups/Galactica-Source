@@ -180,9 +180,10 @@ var connectButton = document.createElement('button')
 	
 	menuOptions.appendChild(endButton)
 	endButton.onclick = function() { 
-	 window.open('https://discord.gg/k6Tcbf4gck', '_blank')
+	
+open(location, '_self').close();
 		}
-	endOptions.appendChild(endOption)
+	menuOptions.appendChild(endOption)
 		endOption.appendChild(endButton)
 	
 
