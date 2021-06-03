@@ -169,6 +169,22 @@ var connectButton = document.createElement('button')
 		discordOption.appendChild(discButton)
 	
 	
+	
+	
+	var endOption = document.createElement('li')
+	var endButton = document.createElement('button')
+	endButton.id = 'button'
+	endButton.classList.add('button')
+	
+	endButton.innerHTML = 'End Game'
+	
+	menuOptions.appendChild(endButton)
+	endButton.onclick = function() { 
+	 window.open('https://discord.gg/k6Tcbf4gck', '_blank')
+		}
+	endOptions.appendChild(endOption)
+		endOption.appendChild(endButton)
+	
 
 /*var multiplayerOption = document.createElement('li')
 multiplayerOption.innerHTML = 'Multiplayer'
