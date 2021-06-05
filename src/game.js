@@ -642,7 +642,7 @@ mesh._children[3].material=busmat
 				if (entityIgnore != data.id) {
 					
 					
-					numplayers++
+					//numplayers++
 				setTimeout(function() {
 			entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
 
