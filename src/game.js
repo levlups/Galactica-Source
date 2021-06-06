@@ -906,7 +906,7 @@ mesh._children[3].material=busmat
 					var pos = Object.values(data.data.pos)
 					if(data.data.hrot !==undefined){
 						
-						noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh.rotation={x:data.data.brot._x,y:data.data.brot._y,z:data.data.brot._z};
+						//noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh.rotation={x:data.data.brot._x,y:data.data.brot._y,z:data.data.brot._z};
 				
 					noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh._children[0].rotation={x:data.data.hrot._x,y:data.data.hrot._y,z:data.data.hrot._z};
 					
