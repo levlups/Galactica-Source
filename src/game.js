@@ -61,6 +61,8 @@ global.orbsound='random/orb.ogg'
 global.flagbearer=false
 
 var state='waiting'
+
+var cool=false
 global.socket=null
 
 global.loottable={
@@ -481,6 +483,16 @@ defineModelCompFirework(noa)
 				console.log('Teleport: ', data)
 			})
 			
+			
+			socket.on('teleportspawn', function(data) {
+				if(data.id==mainplayerdat && !cool){
+				console.log(data)
+				noa.ents.setPosition(noa.playerEntity, [0,100,0])
+				console.log('Teleport: ', data)
+				cool=true
+				}
+			})
+			
 		          
 					
 			socket.on('echo-newmobskin', function(data) {
@@ -516,7 +528,8 @@ mesh._children[3].material=busmat
 						console.log('wathsuppppppp')
 						
 							var body=noa.ents.getPhysicsBody(noa.playerEntity)
-							body.applyImpulse([0,4,0]);
+							//body.applyImpulse([0,4,0]);
+					socket.emit('diespawn', {pos:[0,100,0],id:mainplayerdat}) 
 							return;
 					}
 				
