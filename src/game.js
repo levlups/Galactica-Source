@@ -28,6 +28,7 @@ import { applyModelRocket,defineModelCompRocket } from './ents/rocket'
 import { applyModelBombot,defineModelCompBombot } from './ents/bombot'
 import { applyModelCanon,defineModelCompCanon } from './ents/canon'
 import { applyModelDog,defineModelCompDog } from './ents/dog'
+import { applyModelDoge,defineModelCompDoge } from './ents/doge'
 import { applyModelChest,defineModelCompChest } from './ents/chest'
 import { applyModelSign,defineModelCompSign } from './ents/sign'
 import { applyModelRobot,defineModelCompRobot } from './ents/robot'
@@ -337,6 +338,7 @@ defineModelCompFirework(noa)
 			defineModelCompMadbot(noa)
 			defineModelCompBirdbot(noa)
 			defineModelCompDog(noa)
+			defineModelCompDoge(noa)
 			defineModelCompChest(noa)
 			defineModelCompSign(noa)
 			defineModelCompRobot(noa)
@@ -505,7 +507,27 @@ mesh._children[3].material=busmat
 			
 			socket.on('ishit', function(data) {
 				
+				console.log(data.id)
 				
+				console.log('cook'+mainplayerdat)
+				
+					if(data.id==mainplayerdat){
+						
+						console.log('wathsuppppppp')
+						
+							var body=noa.ents.getPhysicsBody(noa.playerEntity)
+							body.applyImpulse([0,4,0]);
+							return;
+					}
+				
+				var body=noa.ents.getPhysicsBody(entityList[data.id])
+				body.applyImpulse([data.strength[0],data.strength[1],data.strength[2]])
+				noa.ents.getState(entityList[data.id], 'stats').health-=1
+				
+				var c=noa.ents.getState(entityList[data.id], 'stats').health
+				if(c<0){
+				 socket.emit('despawn', data.id) 
+				}
 				if(true){
 					return;
 				}
@@ -828,12 +850,20 @@ mesh._children[3].material=busmat
 					applyModelMadbot(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket)
 						
 					}*/
-					
+					console.log(data.data.type)
 					if(data.data.type=='dog'){
 						
 						entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
 
 					applyModelDog(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket,data.data.chest,data.data.age)
+						
+					}
+					
+							if(data.data.type=='doge'){
+						
+						entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
+
+					applyModelDoge(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket,data.data.chest,data.data.age)
 						
 					}
 					

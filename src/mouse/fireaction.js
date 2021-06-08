@@ -51,7 +51,20 @@ if(numhits>10){
 			
 			}*/
 			
+		if(entClick[2]=='doge'){
+			console.log('vitalik')
+			
+			
+						socket.emit('hitentity', {id: entClick[0],strength:[0,3,0]}) 
+						
+						var c=	noa.ents.getState( entityList[entClick[0]], 'entmesh').mesh
 		
+		//sweet=makedebris('item/leash',c,scene,2,0.2)
+		
+		sweet=makedebris('particle/big_smoke3',c,scene,2,1)
+			
+			
+		}
 		
 		if(entClick[2]=='sign'){
 			

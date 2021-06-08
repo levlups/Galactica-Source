@@ -232,7 +232,7 @@ particleSystem.color2 = new BABYLON.Color4(1,1,1, 1.0);
 
 	
 	
-		        particleSystem.emitter= pos
+		        particleSystem.emitter= {x:pos.position.x,y:pos.position.y+2,z:pos.position.z}//[pos.position.x,pos.position.y+2,pos.position.z]
 	            particleSystem.minSize =size/2//0.3
                 particleSystem.maxSize =size//0.5
                // particleSystem.isAnimationSheetEnabled = true;
@@ -337,7 +337,7 @@ particleSystem.color2 = new BABYLON.Color4(1,1,1, 1.0);
 		   particleSystem.minEmitPower = 1;
            particleSystem.maxEmitPower = 2;
            particleSystem.updateSpeed = 0.020
-		   particleSystem.gravity = new BABYLON.Vector3(0,-3, 0);
+		   particleSystem.gravity = new BABYLON.Vector3(0,3, 0);
 			 
 
 

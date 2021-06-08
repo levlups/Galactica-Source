@@ -469,6 +469,7 @@ c.material.diffuseTexture.hasAlpha = true
 
 var sel=noa.ents.getState(noa.playerEntity, 'inventory').selected
 		var item=noa.ents.getState(noa.playerEntity, 'inventory').main[sel].id
+			socket.emit('wantent',{position:noa.targetedBlock.adjacent,type:item});	
 		if(items[item] !==undefined){
 				if (item=='horse' || item=='dog'  ) {
 					
