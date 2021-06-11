@@ -14,7 +14,7 @@ module.exports.postgame = function(username, passwords) {
     xhr.onreadystatechange = (e) => {
 
         var c = xhr.responseText
-        console.log(c)
+        //console.log(c)
         if (c == 'dog') {
             console.log('you have an amazing  ' + c)
         }
@@ -55,7 +55,7 @@ module.exports.getuui = function(name) {
         var c = xhr.responseText
 
         if (c !== "") {
-            console.log(c)
+          //  console.log(c)
             window.localStorage.setItem('uuid', c);
 
 
@@ -86,9 +86,9 @@ module.exports.getphpitems = function(name) {
         var c = xhr.responseText
 
         if (c !== "") {
-            console.log(c)
+           // console.log(c)
             var res = c.split("|");
-            console.log(res)
+           // console.log(res)
             window.localStorage.setItem('items', c); //
 
 

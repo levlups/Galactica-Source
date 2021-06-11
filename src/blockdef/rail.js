@@ -3,7 +3,7 @@ var trapjson=null
 export function rail(noa,options,id,name,e){
 	
 	trapjson=e
-	console.log(e)
+	//console.log(e)
 	var scene=noa.rendering.getScene()
 			
 			var mesh = BABYLON.Mesh.CreatePlane('sprite-' + name, 1, scene)//makeBigMesh(noa, scene, texture, 'lol')//BABYLON.MeshBuilder.CreateBox(name, uvoptions, noa.rendering.getScene())

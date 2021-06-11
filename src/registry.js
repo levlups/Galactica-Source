@@ -33,7 +33,7 @@ import { makeframe} from './blockdef/frame'
 import { plate} from './blockdef/plate'
 import { lever} from './blockdef/lever'
 import { torch} from './blockdef/torch'
-import { cake} from './blockdef/cake'
+//import { cake} from './blockdef/cake'
 import { rail} from './blockdef/rail'
 import { railside} from './blockdef/railside'
 import { blocklook} from './blocklook'
@@ -449,7 +449,7 @@ var color=[1,1,1]
 		}else if (type == 30) {
 			 
 			 ///cake/////
-			  cake(noa,options,id,texture)
+			//  cake(noa,options,id,texture)
 			 
 		}else if(type==31){
 			makeairjelly(noa,options,id,name,jsoninfo[name])

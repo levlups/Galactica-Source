@@ -31,6 +31,7 @@ import { applyModelDog,defineModelCompDog } from './ents/dog'
 import { applyModelDoge,defineModelCompDoge } from './ents/doge'
 import { applyModelChest,defineModelCompChest } from './ents/chest'
 import { applyModelSign,defineModelCompSign } from './ents/sign'
+import { applyModelSpawn,defineModelCompSpawn } from './ents/spawn'
 import { applyModelRobot,defineModelCompRobot } from './ents/robot'
 import { applyModelHover,defineModelCompHover } from './ents/hover'
 import { applyModelWall,defineModelCompWall } from './ents/wall'
@@ -48,6 +49,9 @@ import { makeparticle } from './particle'
 
 import clientconfig from './data/playerskin.json'////
 
+
+global.teamcoords={1:[44,42,-6],2:[47,41,27],3:[20,40,-49],4:[-2,40,-46]}
+
 var versionmod=localStorage.getItem('modname')
 if(versionmod==undefined){
 	versionmod='v1';
@@ -62,7 +66,7 @@ global.flagbearer=false
 
 var state='waiting'
 
-var cool=false
+
 global.socket=null
 
 global.loottable={
@@ -311,7 +315,7 @@ console.log('lol'+server)
 			var lastPos = {}
 			var lastRot = 0
 			var chunkList = []
-            console.log(dataPlayer)
+            //console.log(dataPlayer)
 			registerBlocks(noa, dataPlayer.blocks, dataPlayer.blockIDs,socket)
 			registerItems(noa, dataPlayer.items)
 			
@@ -343,6 +347,7 @@ defineModelCompFirework(noa)
 			defineModelCompDoge(noa)
 			defineModelCompChest(noa)
 			defineModelCompSign(noa)
+			defineModelCompSpawn(noa)
 			defineModelCompRobot(noa)
 		
 
@@ -353,7 +358,28 @@ defineModelCompFirework(noa)
 			
 				prepitems(noa,dataPlayer.items,dataPlayer.blocks)
 				
-	
+	       socket.on('pickteam', function(data) {
+						var c=	noa.ents.getState(noa.playerEntity, 'stats').team
+						console.log(c)
+						if(c==0){
+							
+							if(data>4){
+								data-=4
+							}
+							else if(data>8){
+								data-=8
+							}
+							else if(data>12){
+								data-=12
+							}
+							else if(data>16){
+								data-=16
+							}
+							noa.ents.getState(noa.playerEntity, 'stats').team=data
+							
+						}
+						console.log('yo man :'+data);
+			})
 			
 			socket.on('chunkdata', function(data) {
 				var chunkdata = cruncher.decode(Object.values(data.chunk), new Uint16Array(24 * 120 * 24))
@@ -485,11 +511,11 @@ defineModelCompFirework(noa)
 			
 			
 			socket.on('teleportspawn', function(data) {
-				if(data.id==mainplayerdat && !cool){
+				if(data.id==mainplayerdat ){
 				console.log(data)
-				noa.ents.setPosition(noa.playerEntity, [0,100,0])
+				noa.ents.setPosition(noa.playerEntity, [data.pos[0],data.pos[1],data.pos[2]])
 				console.log('Teleport: ', data)
-				cool=true
+				
 				}
 			})
 			
@@ -522,14 +548,18 @@ mesh._children[3].material=busmat
 				console.log(data.id)
 				
 				console.log('cook'+mainplayerdat)
-				
+				var c=noa.ents.getState(noa.playerEntity, 'stats').team
 					if(data.id==mainplayerdat){
 						
 						console.log('wathsuppppppp')
 						
 							var body=noa.ents.getPhysicsBody(noa.playerEntity)
 							//body.applyImpulse([0,4,0]);
-					socket.emit('diespawn', {pos:[0,100,0],id:mainplayerdat}) 
+							
+							
+					socket.emit('diespawn', {pos:teamcoords[c],id:mainplayerdat}) 
+					
+					
 							return;
 					}
 				
@@ -697,7 +727,7 @@ mesh._children[3].material=busmat
 			
 			socket.on('entity-spawn-mob', async function(data) {
 				
-				console.log(data)
+				//console.log(data)
 				var pos = noa.ents.getState(noa.playerEntity, 'position').position
 					
 					var c=null;
@@ -863,7 +893,7 @@ mesh._children[3].material=busmat
 					applyModelMadbot(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket)
 						
 					}*/
-					console.log(data.data.type)
+					//console.log(data.data.type)
 					if(data.data.type=='dog'){
 						
 						entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
@@ -895,7 +925,13 @@ mesh._children[3].material=busmat
 					applyModelSign(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket,data.data.chest,data.data.rotation)
 						
 					}
-					
+					if(data.data.type=='spawn'){
+						
+						entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
+
+					applyModelSpawn(entityList[data.id], data.data.model, data.data.texture, data.data.offset, data.data.nametag, data.data.name, data.data.hitbox,entityList,data.id,socket,data.data.chest,data.data.rotation)
+						
+					}
 					
 					
 					if(data.data.type=='horse'){
@@ -931,7 +967,7 @@ mesh._children[3].material=busmat
 			
 			socket.on('flagbearer', function(data) {
 				
-				console.log('flagbearer ='+data.flag)
+				//console.log('flagbearer ='+data.flag)
 				//if (entityList[data] != undefined) noa.ents.deleteEntity(entityList[data]); delete entityList[data]
 				flagbearer=data.flag
 
@@ -977,7 +1013,7 @@ mesh._children[3].material=busmat
 						
 				}
 			})
-
+            
 			socket.on('sound-play', function(data) { playSound(data.sound, data.volume, data.position, noa) } )
 			
 			socket.on('entity-move-mob', function(data) {

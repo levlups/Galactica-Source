@@ -33,7 +33,7 @@ BABYLON.SceneLoader.ImportMesh("", "", mod+"models/robot/robot.babylon", scene, 
 
 for (var i=0;i<meshes.length;i++){
 	
-	console.log(meshes[i].name)
+	//console.log(meshes[i].name)
 	  meshes[i].material=busmat;
 	  meshes[i].parent=robotroot;
 	 

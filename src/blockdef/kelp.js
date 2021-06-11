@@ -179,7 +179,7 @@ shaderMaterial.diffuseTexture=tex
 
 
 	mesh.material =shaderMaterial// mat
-	console.log(shaderMaterial)
+	//console.log(shaderMaterial)
 	var time = 0;
 	
 	

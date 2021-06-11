@@ -14,7 +14,7 @@ var reqContext = require.context('../sounds/', false, /\.json$/)
       var bareName = /\.\/(.*)\.json/.exec(name)[1]
 		
 		soundjson[bareName]=reqContext(name)
-		console.log(soundjson)
+		//console.log(soundjson)
 		
       
     })

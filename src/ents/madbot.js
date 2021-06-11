@@ -10,7 +10,7 @@ global.busmat=null
 
 var name='madbot';
 export function defineModelCompMadbot(noa2) {
-	console.log('wow')
+	//console.log('wow')
 	noa = noa2
 scene=noa.rendering.getScene()
 	/*noa.ents.createComponent({

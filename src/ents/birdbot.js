@@ -10,7 +10,7 @@ global.busmat=null
 
 var name='birdbot';
 export function defineModelCompBirdbot(noa2) {
-	console.log('wow')
+	//console.log('wow')
 	noa = noa2
 scene=noa.rendering.getScene()
 	/*noa.ents.createComponent({
@@ -34,7 +34,7 @@ BABYLON.SceneLoader.ImportMesh("", "", mod+"models/"+name+"/"+name+".babylon", s
 
 for (var i=0;i<meshes.length;i++){
 	
-	console.log(meshes[i].name)
+	//console.log(meshes[i].name)
 	  meshes[i].material=busmati;
 	  meshes[i].parent=rootzom;
 	 
