@@ -77,7 +77,9 @@ global.loottable={
 	"boat":{"item":"boat","chance":1},
 	"hover":{"item":"hover","chance":1},
 	"bokkusu":{"item":"hover","chance":1},
-	"human":{"item":"snowball","chance":1}
+	"human":{"item":"snowball","chance":1},
+	"doge":{"item":"snowball","chance":1},
+	"dog":{"item":"snowball","chance":1}
 	
 }
 
@@ -554,10 +556,13 @@ mesh._children[3].material=busmat
 						console.log('wathsuppppppp')
 						
 							var body=noa.ents.getPhysicsBody(noa.playerEntity)
-							//body.applyImpulse([0,4,0]);
-							
-							
+							body.applyImpulse([0,4,0]);
+							noa.ents.getState(noa.playerEntity, 'stats').health-=1
+							var k=noa.ents.getState(noa.playerEntity, 'stats').health
+							if(k<0){
 					socket.emit('diespawn', {pos:teamcoords[c],id:mainplayerdat}) 
+					noa.ents.getState(noa.playerEntity, 'stats').health=5
+							}
 					
 					
 							return;
@@ -568,10 +573,21 @@ mesh._children[3].material=busmat
 				noa.ents.getState(entityList[data.id], 'stats').health-=1
 				
 				var c=noa.ents.getState(entityList[data.id], 'stats').health
+				console.log(c)
 				if(c<0){
-				 socket.emit('despawn', data.id) 
+				// socket.emit('despawn', data.id) 
+				 
+				  
+													  
+													  
+													  var c=noa.ents.getState(entityList[data.id], noa.entities.names.position).position
+			                                         var name=noa.ents.getState(entityList[data.id], 'stats').name
+		
+		                                      noa.loot(name,c[0],c[1],c[2],socket)
+			
+													  socket.emit('despawn', data.id) 
 				}
-				if(true){
+				/*if(true){
 					return;
 				}
 				if((typeof data.id)=='number'){
@@ -661,7 +677,7 @@ mesh._children[3].material=busmat
 													
 												 
 												
-												  if(noa.ents.getState(entityList[data.id], 'stats').health<0){
+												/*  if(noa.ents.getState(entityList[data.id], 'stats').health<0){
 													  
 													  
 													  var c=noa.ents.getState(entityList[data.id], noa.entities.names.position).position
@@ -669,7 +685,7 @@ mesh._children[3].material=busmat
 		
 		                                       noa.loot(name,c[0],c[1],c[2],socket)
 			
-													  socket.emit('despawn', data.id) 
+													  socket.emit('despawn', data.id) */
 				
 													 /* var rota=noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh.rotation
 													  var pos=noa.ents.getState(entityList[data.id], noa.entities.names.position).position
@@ -686,8 +702,8 @@ mesh._children[3].material=busmat
 														
 													  
 													  
-												  }
-									}
+												//  }
+									//}
 			})
 			
 		
