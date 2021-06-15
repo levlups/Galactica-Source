@@ -6,6 +6,9 @@ var models = {}
 var noa
 var meshbody=null
 var scene=null
+
+var mats=[]
+var num=0
 export function defineModelComp(noa2) {
 	noa = noa2
 scene=noa.rendering.getScene()
@@ -51,8 +54,30 @@ export function wath(){
 export  function applyModel(eid, model, texture, offset, nametag, name, hitbox,uuid,rota,armor) {
 	
 	console.log(armor)
-	
+
              var builded= mainplayer.clone('human') //meshbody.clone('human')
+			 
+			mats[numplayers]=new BABYLON.StandardMaterial("face0", scene);
+			
+			
+			for (var i=0;i<builded.getChildren().length;i++){
+					builded._children[i].material=mats[num]
+				}
+			
+			var bustex = new BABYLON.Texture(mod+"models/boy/boy.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+			mats[numplayers].diffuseTexture=bustex
+			mats[numplayers].specularColor = BABYLON.Color3.Black()
+             mats[numplayers].emissiveColor = BABYLON.Color3.White()
+			 console.log('playerskino :'+numplayers)
+			 
+			 setTimeout(function(){ 
+			 	if(numplayers>1){
+				var tricktex = new BABYLON.Texture(mod+"models/boy/green.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+				mats[numplayers].diffuseTexture=tricktex
+			}
+			 }, 3000);
+			///num++
+			
 		
 				builded._children[0].isPickable=true
             

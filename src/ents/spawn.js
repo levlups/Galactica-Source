@@ -85,7 +85,7 @@ export  function applyModelSpawn(eid, model, texture, offseta, nametag, name, hi
 				thisSocket:socket
 				
 			})
-			 var cd=addNametag(builded, 'cowy',8,builded.position.x,builded.position.y,builded.position.z+0.025)
+			 var cd=addNametag(builded, 'Team'+num,8,builded.position.x,builded.position.y,builded.position.z+0.025)
 			 cd.material.backFaceCulling=false
 		    
 			
@@ -95,7 +95,7 @@ export  function applyModelSpawn(eid, model, texture, offseta, nametag, name, hi
 			   }else{
 		
                 var c=blocklook(noa)
-				builded.rotation.y=jsoninfo['sign'][c]['Closerotation'][1]
+				builded.rotation.y=jsoninfo['spawn'][c]['Closerotation'][1]
 				
 			   }
 				

@@ -1780,6 +1780,7 @@ game.mode=0
 	console.log(tex+".png")
 	
 	
+
 		var bustex = new BABYLON.Texture(mod+"/models/boy/boy.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 		
 //var bustex = new BABYLON.Texture(mod+"entity/boy.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
@@ -1790,6 +1791,18 @@ busmat.backFaceCulling = false;
 busmat.specularColor = BABYLON.Color3.Black()
 busmat.emissiveColor = BABYLON.Color3.White()
 bustex.hasAlpha=true;
+
+	setTimeout(function(){ 
+	
+	console.log('numplayers :'+numplayers)
+	if(numplayers==1){
+		var couptex = new BABYLON.Texture(mod+"/models/boy/green.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+	console.log('waths up')
+	busmat.diffuseTexture=couptex;
+
+	}
+	
+	}, 10000);
 
 //mainplayer=assemblebody(scene,'girl');
   BABYLON.SceneLoader.ImportMesh(null,mod+"/models/boy/", "boy.babylon", scene, function (meshes) {

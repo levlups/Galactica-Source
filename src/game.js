@@ -107,7 +107,7 @@ getuui('sing')
 
 getphpitems('sing')
 
-var numplayers=0;
+global.numplayers=0;
 	
 	Engine.prototype.soundy=function (sound,volume) {
 		if(volume==undefined){
@@ -300,6 +300,7 @@ console.log('lol'+server)
 			if(!mainppicked){
 			mainplayerdat=data
 			mainppicked=true
+			//numplayer++
 			}
 			entityIgnore = data
 			if (entityList[data] != undefined) noa.ents.deleteEntity(entityList[data]); delete entityList[data]
@@ -362,7 +363,8 @@ defineModelCompFirework(noa)
 				
 	       socket.on('pickteam', function(data) {
 						var c=	noa.ents.getState(noa.playerEntity, 'stats').team
-						console.log(c)
+						numplayers=data;
+						console.log(data)
 						if(c==0){
 							
 							if(data>4){
@@ -559,6 +561,9 @@ mesh._children[3].material=busmat
 							body.applyImpulse([0,4,0]);
 							noa.ents.getState(noa.playerEntity, 'stats').health-=1
 							var k=noa.ents.getState(noa.playerEntity, 'stats').health
+							var l=noa.ents.getState(noa.playerEntity, 'mesh').mesh
+							l._children[0].material.emissiveColor=BABYLON.Color3.Red()
+							setTimeout(function(){l._children[0].material.emissiveColor=BABYLON.Color3.White() }, 300);
 							if(k<0){
 					socket.emit('diespawn', {pos:teamcoords[c],id:mainplayerdat}) 
 					noa.ents.getState(noa.playerEntity, 'stats').health=5
@@ -571,11 +576,14 @@ mesh._children[3].material=busmat
 				var body=noa.ents.getPhysicsBody(entityList[data.id])
 				body.applyImpulse([data.strength[0],data.strength[1],data.strength[2]])
 				noa.ents.getState(entityList[data.id], 'stats').health-=1
-				
+				var l=noa.ents.getState(entityList[data.id], 'entmesh').mesh
+							l._children[0].material.emissiveColor=BABYLON.Color3.Purple()
+							
+							setTimeout(function(){l._children[0].material.emissiveColor=BABYLON.Color3.White() }, 300);
 				var c=noa.ents.getState(entityList[data.id], 'stats').health
 				console.log(c)
 				if(c<0){
-				// socket.emit('despawn', data.id) 
+				
 				 
 				  
 													  
@@ -587,123 +595,7 @@ mesh._children[3].material=busmat
 			
 													  socket.emit('despawn', data.id) 
 				}
-				/*if(true){
-					return;
-				}
-				if((typeof data.id)=='number'){
-					return;
-				}
 				
-				
-									if(data.id==mainplayerdat){
-										
-									var body=noa.ents.getPhysicsBody(noa.playerEntity)
-									//if(body.resting[1]<0){
-									body.applyImpulse([data.strength[0],data.strength[1],data.strength[2]]);
-									//}
-								noa.ents.getState(noa.playerEntity, 'stats').health-=2
-								
-								console.log('poke'+noa.ents.getState(noa.playerEntity, 'stats').health)
-								if(noa.ents.getState(noa.playerEntity, 'stats').health<0){
-									//body.applyImpulse([100,100,100]);
-									//noa.ents.setPosition(noa.playerEntity, [0,100,0])
-									 
-                                    var mesh=noa.ents.getState(noa.playerEntity, 'mesh').mesh
-									 
-									  for (var i=0;i<5;i++){
-									  mesh._children[i].material=busmat
-									  
-									  }
-									  
-									  noa.ents.getState(noa.playerEntity, 'stats').health=15
-									  
-									
-								}
-										
-										
-										return;
-											
-									}else{
-										
-									
-									
-										noa.ents.getState(entityList[data.id], 'stats').health-=2
-								
-								
-								if(noa.ents.getState(entityList[data.id], 'stats').health<0){
-									
-									 
-
-									 // noa.ents.setPosition(entityList[data.id], [0,100,0])
-									   var mesh=noa.ents.getState(entityList[data.id], 'entmesh').mesh
-									  
-									    for (var i=0;i<5;i++){
-									   mesh._children[i].material=busmat
-										}
-									  
-									
-								
-									noa.ents.getState(entityList[data.id], 'stats').health=15;
-								
-								}
-									
-										if(noa.ents.getState(entityList[data.id], noa.entities.names.stats)==undefined){
-											return;
-										}
-										
-										if(noa.ents.getState(entityList[data.id], noa.entities.names.stats).mob==undefined){
-											return;
-										}
-										if(noa.ents.getState(entityList[data.id], noa.entities.names.stats).mob==false){
-											return;
-										}
-									
-						
-												 /* noa.ents.getState(entityList[data.id], 'stats').health-=2
-												
-												  var pos=noa.ents.getState(entityList[data.id], 'position').position
-												 var mesh=noa.ents.getState(entityList[data.id], 'entmesh').mesh
-												 if(noa.ents.getState(entityList[data.id], 'stats').health<2){
-												 mesh.rotation.z=Math.PI/3
-												 }
-												 var sweet=makeparticle('/particle/big_smoke_1',pos,scene,0.8)
-		                                          sweet.start()
-												   playSound('/random/click.ogg', 0.5, null, noa)
-									               
-													   if(noa.entities.hasPhysics(entityList[data.id])){
-														   var body=noa.ents.getPhysicsBody(entityList[data.id])
-													     body.applyImpulse([0,10,0]);
-													   }*/
-													
-												 
-												
-												/*  if(noa.ents.getState(entityList[data.id], 'stats').health<0){
-													  
-													  
-													  var c=noa.ents.getState(entityList[data.id], noa.entities.names.position).position
-			                                         var name=noa.ents.getState(entityList[data.id], 'stats').name
-		
-		                                       noa.loot(name,c[0],c[1],c[2],socket)
-			
-													  socket.emit('despawn', data.id) */
-				
-													 /* var rota=noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh.rotation
-													  var pos=noa.ents.getState(entityList[data.id], noa.entities.names.position).position
-													  //var pos=noa.camera.position
-													  
-		rota.z=lerp(rota.z,Math.PI/4,1);
-		noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh._children[0].material.diffuseColor=new BABYLON.Color3(1, 0, 0);
-		noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh._children[0].material.ambientColor=new BABYLON.Color3(1, 0, 0);
-		noa.ents.getState(entityList[data.id], noa.entities.names.entmesh).mesh._children[0].material.emissiveColor=new BABYLON.Color3(1, 0, 0);*/
-		
-		//var test=noa.ents.getState(noa.playerEntity, noa.entities.names.position).position
-		//chew(test[0],test[1],test[2],'particle/big_smoke_1',false);
-	
-														
-													  
-													  
-												//  }
-									//}
 			})
 			
 		
@@ -723,7 +615,7 @@ mesh._children[3].material=busmat
 				if (entityIgnore != data.id) {
 					
 					
-					//numplayers++
+					numplayers++
 				setTimeout(function() {
 			entityList[data.id] = noa.ents.add(Object.values(data.data.position), 1, 2, null, null, false, true)
 

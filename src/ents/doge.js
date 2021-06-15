@@ -7,6 +7,9 @@ var meshbody1=null
 var scene=null
 var name='doge'
 
+
+var mats=[]
+var num=0
 export function defineModelCompDoge(noa2) {
 		noa = noa2
 scene=noa.rendering.getScene()
@@ -52,7 +55,18 @@ export  function applyModelDoge(eid, model, texture, offseta, nametag, name, hit
 	
 	
              var builded=  meshbody1.clone('human')
+			mats[num]=new BABYLON.StandardMaterial("face0", scene);
 			
+			
+			for (var i=0;i<builded.getChildren().length;i++){
+					builded._children[i].material=mats[num]
+				}
+			
+			var dogtex = new BABYLON.Texture(mod+"models/"+name+"/"+name+".png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+			mats[num].diffuseTexture=dogtex
+			mats[num].specularColor = BABYLON.Color3.Black()
+             mats[num].emissiveColor = BABYLON.Color3.White()
+			num++
 			//builded.position.y+=1
 				
 
