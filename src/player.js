@@ -1801,6 +1801,12 @@ bustex.hasAlpha=true;
 	busmat.diffuseTexture=couptex;
 
 	}
+	if(numplayers==2){
+		var couptex = new BABYLON.Texture(mod+"/models/boy/red.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+	console.log('waths up')
+	busmat.diffuseTexture=couptex;
+
+	}
 	
 	}, 10000);
 

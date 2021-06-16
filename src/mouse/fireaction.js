@@ -31,6 +31,7 @@ export function fireaction(noa,socket){
 		makeslash('particle/slash',raypos,scene,1,1)
 			makeslash('particle/slash1',raypos,scene,1,1)
 			makeslash('particle/slash2',raypos,scene,1,1)
+			noa.soundy(jsoninfo['rocket'].sound,0.8)
 		
 		}
 		

@@ -61,7 +61,7 @@ export  function applyModel(eid, model, texture, offset, nametag, name, hitbox,u
 			
 			
 			for (var i=0;i<builded.getChildren().length;i++){
-					builded._children[i].material=mats[num]
+					builded._children[i].material=mats[numplayers]
 				}
 			
 			var bustex = new BABYLON.Texture(mod+"models/boy/boy.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
@@ -71,11 +71,18 @@ export  function applyModel(eid, model, texture, offset, nametag, name, hitbox,u
 			 console.log('playerskino :'+numplayers)
 			 
 			 setTimeout(function(){ 
-			 	if(numplayers>1){
+			 	if(numplayers==1){
 				var tricktex = new BABYLON.Texture(mod+"models/boy/green.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
 				mats[numplayers].diffuseTexture=tricktex
+			
 			}
-			 }, 3000);
+			
+			if(numplayers==2){
+				var coletex = new BABYLON.Texture(mod+"models/boy/red.png", scene, false, true, BABYLON.Texture.NEAREST_SAMPLINGMODE);
+				mats[numplayers].diffuseTexture=coletex
+			
+			}
+			 }, 15000);
 			///num++
 			
 		
