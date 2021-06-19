@@ -221,7 +221,9 @@ export function prepitems(noa,data,blockdata){
 
 export function setupControls(noa, socket) {
 	
-  
+  setInterval(function(){ 
+noa.check(socket)
+ }, 10000);
 	makecanvas(noa,socket)
 	
 	window.addEventListener("keydown", function(evt) {

@@ -151,6 +151,52 @@ global.numplayers=0;
 		
 	}
 	
+	function getHighestBlock(noa, x, z) {
+	for (var y = 120 - 1; y >= 0; y = y - 1) {
+		var val = noa.getBlock(x, y, z)
+		if (val != 0 && val != 9) return {level: y, block: val}
+	}
+	return null
+}
+
+var spawns={'grass':{'mob':'horse','min':30,'max':50},
+'sand':{'mob':'doge','min':30,'max':50},
+'leaves':{'mob':'birdbot','min':30,'max':50},
+'watertop':{'mob':'birdbot','min':30,'max':50}
+    
+}
+	
+
+
+	Engine.prototype.check=function(socket){
+		var pos=noa.ents.getState(noa.playerEntity, 'position').position
+		
+		var k=pos[0]+Math.floor(Math.random()*25-12)
+		var k1=pos[2]+Math.floor(Math.random()*25-12)
+		var c=getHighestBlock(noa, k, k1)
+		if(c==null){
+			return;
+		}
+		
+		console.log( blocks[c.block].name)
+		console.log(c.level)
+		var l=blocks[c.block].name
+		if(spawns[l]!==undefined){
+		var l=blocks[c.block].name
+		//if(blocks[c.block].name=='grass' ){
+			if(c.level>spawns[l].min & c.level<spawns[l].max){
+		socket.emit('wantent',{position:[k,c.level+2,k1],type:spawns[l].mob});
+			}
+		}
+		//}
+		
+	/*	if(blocks[c.block].name=='sand' ){
+			if(c.level>spawns['sand'].min & c.level<spawns['sand'].max){
+		socket.emit('wantent',{position:[k,c.level+1,k1],type:spawns['sand'].mob});
+			}
+		}*/
+	}
+	
 	Engine.prototype.playerdown=function(socket){
 		
 		console.log('poor player')
@@ -173,7 +219,7 @@ global.numplayers=0;
 
 
 
-var mainplayerdat=null;
+global.mainplayerdat=null;
 var mainppicked=false
 global.engineParams = {
 	debug: true,
@@ -558,7 +604,10 @@ mesh._children[3].material=busmat
 						console.log('wathsuppppppp')
 						
 							var body=noa.ents.getPhysicsBody(noa.playerEntity)
+							if(body.resting[1]==-1){
 							body.applyImpulse([0,4,0]);
+							health-=0.05
+							}
 							noa.ents.getState(noa.playerEntity, 'stats').health-=1
 							var k=noa.ents.getState(noa.playerEntity, 'stats').health
 							var l=noa.ents.getState(noa.playerEntity, 'mesh').mesh
@@ -566,7 +615,8 @@ mesh._children[3].material=busmat
 							setTimeout(function(){l._children[0].material.emissiveColor=BABYLON.Color3.White() }, 300);
 							if(k<0){
 					socket.emit('diespawn', {pos:teamcoords[c],id:mainplayerdat}) 
-					noa.ents.getState(noa.playerEntity, 'stats').health=5
+					noa.ents.getState(noa.playerEntity, 'stats').health=10
+					health=10
 							}
 					
 					
@@ -1020,7 +1070,10 @@ mesh._children[3].material=busmat
 						
 					
 					if (chunkList.length != 0) {
-						setChunk(chunkList[0][0], chunkList[0][1], noa,socket)
+						
+						var pos = noa.ents.getState(noa.playerEntity, 'position').position
+						var c=getHighestBlock(noa,pos[0],pos[2])
+						setChunk(chunkList[0][0], chunkList[0][1], noa,socket,c)
 						chunkList.shift()
 					}
 					

@@ -175,17 +175,18 @@ builded._children[0].scaling.x=1.2
   })
 		function collideEntityo(noa, ownID, otherID){
 	      if(ownID==noa.playerEntity){
-		  
+		  socket.emit('hitentity', {id: mainplayerdat,strength:[0,3,0]}) 
+		  health-=1
 	//if(body.resting[1]==-1){
-	 	var  body2 = noa.ents.getPhysicsBody(ownID)
+	 	//var  body2 = noa.ents.getPhysicsBody(ownID)
 		
 		//body.applyImpulse([-body.velocity[0],1,-body.velocity[2]])
-		var playerp=noa.ents.getState(noa.playerEntity, noa.entities.names.position).position
-		var cp=noa.ents.getState(eid, noa.entities.names.position).position
+		//var playerp=noa.ents.getState(noa.playerEntity, noa.entities.names.position).position
+		//var cp=noa.ents.getState(eid, noa.entities.names.position).position
 	
-		body.applyImpulse([(cp[0]-playerp[0])*1.4,0.3,(cp[2]-playerp[2])*1.4])//
-		body2.applyImpulse([0,1,0])
-		health-=0.05
+		//body.applyImpulse([(cp[0]-playerp[0])*1.4,0.3,(cp[2]-playerp[2])*1.4])//
+		//body2.applyImpulse([0,1,0])
+		//health-=0.05
     // }
 	 //  body.applyImpulse([0,7,0]);
 	   /*noa.ents.getState(ownID, 'entmesh').health-=2*/

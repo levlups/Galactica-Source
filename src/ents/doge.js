@@ -129,7 +129,16 @@ builded._children[0].scaling.x=1.4
 							})*/
 							
 							
-							noa.entities.addComponent(eid, noa.entities.names.entAI,{
+						/*	noa.entities.addComponent(eid, noa.entities.names.entAI,{
+								mesh:builded,
+								npcList:entityList,
+								name:'dog'
+								//path:PF
+								
+							})	*/
+							
+							
+							noa.entities.addComponent(eid, noa.entities.names.agroAI,{
 								mesh:builded,
 								npcList:entityList,
 								name:'dog'
@@ -159,6 +168,10 @@ noa.entities.addComponent(eid, noa.entities.names.collideEntities, {
     
 	function ouch(ownID){
 	
+	    if(ownID==noa.playerEntity){
+		  socket.emit('hitentity', {id: mainplayerdat,strength:[0,3,0]}) 
+		   health-=1
+		}
 			/*var  body2 = noa.ents.getPhysicsBody(ownID)
 	
 		body.applyImpulse([body2.velocity[0]/2,0.1,body2.velocity[2]/2])*/

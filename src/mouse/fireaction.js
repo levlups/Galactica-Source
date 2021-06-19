@@ -31,7 +31,7 @@ export function fireaction(noa,socket){
 		makeslash('particle/slash',raypos,scene,1,1)
 			makeslash('particle/slash1',raypos,scene,1,1)
 			makeslash('particle/slash2',raypos,scene,1,1)
-			noa.soundy(jsoninfo['rocket'].sound,0.8)
+		
 		
 		}
 		
@@ -55,7 +55,8 @@ if(numhits>10){
 		if(entClick[2]=='doge'){
 			console.log('vitalik')
 			
-			
+		//	noa.soundy(jsoninfo['rocket'].sound,0.8)
+		noa.soundy(jsoninfo[entClick[2]].sound,0.8)
 						socket.emit('hitentity', {id: entClick[0],strength:[0,3,0]}) 
 						
 						var c=	noa.ents.getState( entityList[entClick[0]], 'entmesh').mesh
