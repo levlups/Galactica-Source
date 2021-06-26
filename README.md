@@ -6,8 +6,7 @@ Levlups is a voxel game using Noa engine in back end.
 [![levlups image](https://i.imgur.com/1XLqSSQ.png)](https://www.youtube.com/watch?v=hYIIxUh5YSc)
 
 
-Buy copiled game 10$
-[![levlups image](https://www.paypalobjects.com/webstatic/mktg/merchant_portal/button/buynow.en.png)](https://galacticau.fun/pay/?amountGBP=10&currency=USD&game=true)
+
 How to install 
 clone repositiory
 
