@@ -12,7 +12,10 @@ clone repositiory
 
 to launch
 open cmd and type npm start
-launch server
+
+
+to launch server (its a must for singleplayer to work!)
+go in server file and click (launch Server) icon
 
 
 - [Discord](https://discord.gg/n66mUfEu)
