@@ -3,7 +3,9 @@
 Levlups is a voxel game using Noa engine in back end. 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate?hosted_button_id=3BHCY5NSQLNMW)
 
-[![levlups image](https://github.com/levlups/Galactica-Source/blob/main/src/gui/Galactica1624767641724.png)](https://www.youtube.com/watch?v=hYIIxUh5YSc)
+[![levlups image](https://github.com/levlups/Galactica-Source/blob/main/src/gui/htp.png?raw=true)](https://www.youtube.com/watch?v=hYIIxUh5YSc)
+
+link of video : https://www.youtube.com/watch?v=55BN4WlUnnM
 
 some assets used from Pixel Perfection Community Edition (https://github.com/Athemis/PixelPerfectionCE)
 for testing purposes until I changed them.
