@@ -6,7 +6,7 @@ Levlups is a voxel game using Noa engine in back end.
 [![levlups image](https://i.imgur.com/1XLqSSQ.png)](https://www.youtube.com/watch?v=hYIIxUh5YSc)
 
 
-
+this project have used many codes from voxelsrv https://github.com/VoxelSrv/voxelsrv-old and Noa Engine from andyhall https://github.com/andyhall/noa
 How to install 
 clone repositiory
 
@@ -16,7 +16,4 @@ launch server
 
 
 - [Discord](https://discord.gg/n66mUfEu)
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
